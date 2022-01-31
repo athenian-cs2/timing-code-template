@@ -19,7 +19,7 @@ public class MyMain {
     // makeRandomArray(1) => [0]
     public static int[] makeRandomArray(int x) {
         // YOUR CODE HERE
-        return null;
+        return new int[0];
     }
 
     // *********
