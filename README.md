@@ -1,6 +1,6 @@
-# Week 4 Day 3: Merge Sort
+# Week 5 Day 1: Timing Code
 
-In class today, we'll look at a final application of recursion: Merge Sort. 
+In class today, we'll be doing some experiments to time how fast our code is!
 
 <br />
 
