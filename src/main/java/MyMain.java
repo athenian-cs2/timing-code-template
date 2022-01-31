@@ -163,20 +163,53 @@ public class MyMain {
     // *********
 
     public static void main(String[] args) {
+        // A single trial of linear search vs. binary search
         int[] arr1 = makeRandomArray(10);
         arr1 = mergeSort(arr1);
         int[] arr2 = copyArray(arr1);
 
         long start1 = System.nanoTime();
-        linearSearch(arr1, 20);
+        linearSearch(arr1, -1);
         long end1 = System.nanoTime();
 
         System.out.println("Linear search: " + (end1-start1)  + " ns");
 
         long start2 = System.nanoTime();
-        binarySearch(arr2, 20);
+        binarySearch(arr2, -1);
         long end2 = System.nanoTime();
 
         System.out.println("Binary search: " + (end2-start2)  + " ns");
+
+        // Running Multiple Trials
+        long linearTotal = 0;
+        long binaryTotal = 0;
+
+        int numTrials = 10000;
+
+        for (int i = 0; i < numTrials; i++) {
+            // A single trial of linear search vs. binary search
+            int[] arr1Trial = makeRandomArray(1000);
+            arr1Trial = mergeSort(arr1Trial);
+            int[] arr2Trial = copyArray(arr1Trial);
+
+            long start1Trial = System.nanoTime();
+            linearSearch(arr1Trial, -1);
+            long end1Trial = System.nanoTime();
+
+            linearTotal += (end1Trial-start1Trial);
+
+            //System.out.println("Linear search: " + (end1Trial-start1Trial)  + " ns");
+
+            long start2Trial = System.nanoTime();
+            binarySearch(arr2Trial, -1);
+            long end2Trial = System.nanoTime();
+
+            binaryTotal += (end2Trial-start2Trial);
+
+            //System.out.println("Binary search: " + (end2Trial-start2Trial)  + " ns");
+        }
+
+        System.out.println("Linear search: " + (linearTotal / numTrials)  + " ns on average");
+        System.out.println("Binary search: " + (binaryTotal / numTrials)  + " ns on average");
     }
 }
