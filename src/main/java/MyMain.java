@@ -164,6 +164,7 @@ public class MyMain {
 
     public static void main(String[] args) {
         int[] arr1 = makeRandomArray(10);
+        arr1 = mergeSort(arr1);
         int[] arr2 = copyArray(arr1);
 
         long start1 = System.nanoTime();
