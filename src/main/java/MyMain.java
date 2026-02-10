@@ -163,31 +163,45 @@ public class MyMain {
     // *********
 
     public static void main(String[] args) {
-        // A single trial of linear search vs. binary search
+        // Example: A single trial of linear search vs. binary search
+
+        // Pre-work: create two copies of a sorted array
         int[] arr1 = makeRandomArray(10);
         arr1 = mergeSort(arr1);
         int[] arr2 = copyArray(arr1);
 
+        // Start the timer
         long start1 = System.nanoTime();
+        // Perform linear search
         linearSearch(arr1, -1);
+        // End the timer
         long end1 = System.nanoTime();
 
         System.out.println("Linear search: " + (end1-start1)  + " ns");
 
+        // Start the second timer
         long start2 = System.nanoTime();
+        // Perform binary search
         binarySearch(arr2, -1);
+        // End the second timer
         long end2 = System.nanoTime();
 
         System.out.println("Binary search: " + (end2-start2)  + " ns");
 
-        // Running Multiple Trials
+        // When running multiple trials, we need to track the total time taken across trials
+        // for each timed function.
         long linearTotal = 0;
         long binaryTotal = 0;
 
+        // We're always going to use 10000 trials.
+        // It's enough to sufficiently reduce noise for our purposes.
         int numTrials = 10000;
 
         for (int i = 0; i < numTrials; i++) {
-            // A single trial of linear search vs. binary search
+            // A single trial of linear search vs. binary search.
+            // If you're feeling fancy, you can move this code into different
+            // functions for the different methods!
+            // Array size of 1000
             int[] arr1Trial = makeRandomArray(1000);
             arr1Trial = mergeSort(arr1Trial);
             int[] arr2Trial = copyArray(arr1Trial);
@@ -196,17 +210,14 @@ public class MyMain {
             linearSearch(arr1Trial, -1);
             long end1Trial = System.nanoTime();
 
+            // Add the time taken in that trial to the total
             linearTotal += (end1Trial-start1Trial);
-
-            //System.out.println("Linear search: " + (end1Trial-start1Trial)  + " ns");
 
             long start2Trial = System.nanoTime();
             binarySearch(arr2Trial, -1);
             long end2Trial = System.nanoTime();
 
             binaryTotal += (end2Trial-start2Trial);
-
-            //System.out.println("Binary search: " + (end2Trial-start2Trial)  + " ns");
         }
 
         System.out.println("Linear search: " + (linearTotal / numTrials)  + " ns on average");
